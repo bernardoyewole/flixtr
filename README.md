@@ -1,4 +1,4 @@
-## Calculator
+## FLIXTREE
 
 This is a simple calculator that can be used for basic arithmetic operations.
 
@@ -10,10 +10,4 @@ This is a simple calculator that can be used for basic arithmetic operations.
 </p>
 
 ## Demo
-Click [here](https://bernardoyewole.github.io/calculator/) to check it out.
-
-A demo is show below:
-
-<p align='center'>
-<img src='./assets/img/calculator.png'>
-</p>
+Click [here](https://bernardoyewole.github.io/flixtree/) to check it out.

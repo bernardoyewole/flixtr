@@ -11,9 +11,70 @@
     font-weight: 600;
 } */
 
+/* ------------------Header style---------------- */
+/* ---------------------------------------------- */
+
+header {
+    background-color: #161644;
+    height: 70px;
+    line-height: 70px;
+}
+
+header > nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.links-container {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.links {
+    display: flex;
+    gap: 24px;
+}
+
+.user-box {
+    height: 50px;
+    width: 50px;
+}
+
+.user-box img {
+    border-radius: 50%;
+}
+
+.links-container ::placeholder {
+    color: #bebeda;
+    font-weight: 500;
+}
+
+.links-container input {
+    height: 40px;
+    border-radius: 6px;
+    background: #4A4A6E url(../img/loupe.png) no-repeat;
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-position: 8px;
+    padding: 0px 20px 0px 38px;
+    color: #fff;
+}
+
+header a:not(.flixtree) {
+    color: #fff;
+    font-size: 18px;
+}
+
+.flixtree {
+    font-size: 30px;
+    font-weight: 500;
+    color: #fff;
+}
 /* ------------------Main style------------------ */
 /* ---------------------------------------------- */
 
 main {
     height: 100%;
+    background-color: #1F1F44;
 }
