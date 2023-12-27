@@ -4,12 +4,21 @@ import { onEvent, select, selectAll, create, print } from "./utils.js";
 
 const popularMovies = selectAll('.popular-movie');
 const friends = selectAll('.friend img');
+const featuredMovies = selectAll('.featured-img img');
+const raters = selectAll('.rater');
 
 let count = 0;
 
-function setMovies(arr) {
-    popularMovies.forEach(ele => {
-        ele.setAttribute('src', arr[count].poster);
+function setPopularMovies(arr) {
+    popularMovies.forEach(img => {
+        img.setAttribute('src', arr[count].poster);
+        count++;
+    });
+}
+
+function setFeaturedMovies(arr) {
+    featuredMovies.forEach(img => {
+        img.setAttribute('src', arr[count].poster);
         count++;
     });
 }
@@ -31,7 +40,8 @@ async function getMovies() {
     const data = await response.json();
     const movies = data.response;
 // console.log(movies)
-    setMovies(movies);
+    setPopularMovies(movies);
+    setFeaturedMovies(movies);
   } catch(error) {
     console.log(error);
   }
@@ -39,14 +49,29 @@ async function getMovies() {
 
 getMovies();
 
-let index = 0;
+let index1 = 0;
 
 function setFriend(arr) {
     arr.forEach(obj => {
-        let img = friends[index];
-        img.setAttribute('src', obj.picture.large);
-        index++;
+        if (index1 === 6) return;
+
+        // print(friends[index])
+        friends[index1].setAttribute('src', obj.picture.large);
+        index1++;
     });
+}
+
+let index2 = 0;
+
+function setRater(arr) {
+    // print(raters)
+    arr.forEach(obj => {
+        // if (index === 6) return;
+
+        let img = raters[index2];
+        img.setAttribute('src', obj.picture.large);
+        // index++;
+    });  
 }
 
 async function getFriends() {
@@ -61,8 +86,9 @@ async function getFriends() {
 
         const users = await result.json();
         const list = users.results;
-        print(list);
+        // print(list);
         setFriend(list);
+        setRater(list);
     } catch (error) {
         console.log(error.message);
     }

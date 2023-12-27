@@ -72,16 +72,15 @@ header a:not(.flixtree) {
     color: #fff;
 }
 
-/* ------------------Main style------------------ */
+/* ------------Popular movies style-------------- */
 /* ---------------------------------------------- */
 
 main {
-    height: 100%;
     background-color: #1F1F44;
 }
 
 .content {
-    padding-top: 40px;
+    padding: 40px 0px;
 }
 
 h1 {
@@ -118,4 +117,91 @@ h1 {
     height: 30px;
     width: 30px;
     border: 2px solid #fff;
+}
+
+/* -----------Featured movies style------------- */
+/* --------------------------------------------- */
+
+.featured-movies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center;
+    height: 100%; */
+}
+
+.movie-one {
+    margin-top: 60px;
+    padding: 30px;
+    display: flex;
+    height: 300px;
+    width: 65%;
+    background-color: #161644;
+    border-radius: 20px;
+    border: 2px solid #4A4A6E;
+}
+
+.featured-img {
+    width: 60%;
+}
+
+.featured-img  img {
+    height: 100%;
+    border-radius: 12px;
+}
+
+.rater {
+    height: 50px;
+    width: 50px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.featured-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.featured-heading > div {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.movie-title {
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+.fa-star:not(.empty-star) {
+    color: #E5A265;
+}
+
+.empty-star {
+    color: #4A4A6E;
+
+}
+
+.fa-star:first-of-type {
+    padding-left: 10px;
+}
+
+.add-to-list {
+    padding: 6px;
+    background-color: #3664C0;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.add-to-list:hover {
+    background-color: #335eb4;
+}
+
+.movie-descrip {
+    line-height: 1.6;
 }
