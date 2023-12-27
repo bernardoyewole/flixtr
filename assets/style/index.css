@@ -3,7 +3,7 @@
 @import url(./reset.css);
 
 .container {
-    width: min(100% - 30px, 1080px);
+    width: min(100% - 30px, 1280px);
     margin-inline: auto;
 }
 
@@ -27,13 +27,13 @@ header > nav {
 
 .links-container {
     display: flex;
-    gap: 24px;
+    gap: 30px;
     align-items: center;
 }
 
 .links {
     display: flex;
-    gap: 24px;
+    gap: 30px;
 }
 
 .user-box {
@@ -63,7 +63,7 @@ header > nav {
 
 header a:not(.flixtree) {
     color: #fff;
-    font-size: 18px;
+    font-size: 18px;    
 }
 
 .flixtree {
@@ -71,10 +71,51 @@ header a:not(.flixtree) {
     font-weight: 500;
     color: #fff;
 }
+
 /* ------------------Main style------------------ */
 /* ---------------------------------------------- */
 
 main {
     height: 100%;
     background-color: #1F1F44;
+}
+
+.content {
+    padding-top: 40px;
+}
+
+h1 {
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.movies-box {
+    display: flex;
+    gap: 20px;
+}
+
+.movies-box > div {
+    position: relative;
+}
+
+.popular-movie {
+    border-radius: 12px;
+}
+
+.friend {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    padding: 0px 0px 8px 8px;
+    border-bottom-left-radius: 11px;
+    border-bottom-right-radius: 11px;
+    background: linear-gradient(to top, rgba(0 0 0), transparent);
+}
+
+.friend img {
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    border: 2px solid #fff;
 }
