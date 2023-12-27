@@ -4,8 +4,10 @@ import { onEvent, select, selectAll, create, print } from "./utils.js";
 
 const popularMovies = selectAll('.popular-movie');
 const friends = selectAll('.friend img');
-const featuredMovies = selectAll('.featured-img img');
 const raters = selectAll('.rater');
+const featuredMovies = selectAll('.featured-img img');
+const movieTitles = selectAll('.movie-title');
+const movieDescrips = selectAll('.movie-descrip');
 
 let count = 0;
 
@@ -19,6 +21,20 @@ function setPopularMovies(arr) {
 function setFeaturedMovies(arr) {
     featuredMovies.forEach(img => {
         img.setAttribute('src', arr[count].poster);
+        count++;
+    });
+
+    count = 12;
+
+    movieTitles.forEach(title => {
+        title.innerText = `${arr[count].title} (${arr[count].year})`;
+        count++;
+    });
+
+    count = 12;
+
+    movieDescrips.forEach(descrip => {
+        descrip.innerText = `${arr[count].description}`;
         count++;
     });
 }
@@ -53,29 +69,25 @@ let index1 = 0;
 
 function setFriend(arr) {
     arr.forEach(obj => {
-        if (index1 === 6) return;
+        if (index1 === 12) return;
 
-        // print(friends[index])
         friends[index1].setAttribute('src', obj.picture.large);
         index1++;
     });
 }
 
-let index2 = 0;
+function getRandomIndex() {
+    return Math.floor((Math.random() * 11) + 1)
+}
 
 function setRater(arr) {
-    // print(raters)
-    arr.forEach(obj => {
-        // if (index === 6) return;
-
-        let img = raters[index2];
-        img.setAttribute('src', obj.picture.large);
-        // index++;
-    });  
+    raters.forEach(rater => {
+        rater.setAttribute('src', arr[getRandomIndex()].picture.large);
+    })
 }
 
 async function getFriends() {
-    const URL = 'https://randomuser.me/api/?nat=CA&results=10&seed=same';
+    const URL = 'https://randomuser.me/api/?nat=CA&results=14&seed=same';
 
     try {
         const result = await fetch(URL, options);

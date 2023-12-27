@@ -91,10 +91,16 @@ h1 {
 .movies-box {
     display: flex;
     gap: 20px;
+    padding-bottom: 40px;
 }
 
 .movies-box > div {
     position: relative;
+    transition: all 0.25s ease-in-out;
+}
+
+.movies-box > div:hover {
+    transform: scale(1.05);
 }
 
 .popular-movie {
@@ -126,27 +132,36 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: center;
-    height: 100%; */
 }
 
-.movie-one {
+.movie {
     margin-top: 60px;
     padding: 30px;
     display: flex;
-    height: 300px;
-    width: 65%;
+    gap: 20px;
+    height: 320px;
+    width: 70%;
     background-color: #161644;
     border-radius: 20px;
     border: 2px solid #4A4A6E;
 }
 
 .featured-img {
-    width: 60%;
+    transition: all 0.25s ease-in-out;
+    width: 25%;
 }
 
-.featured-img  img {
+.featured-img:hover {
+    transform: scale(1.05);
+}
+
+.movie-info {
+    width: 75%;
+}
+
+.featured-img img {
     height: 100%;
+    width: 100%;
     border-radius: 12px;
 }
 
@@ -173,6 +188,7 @@ h1 {
 .movie-title {
     font-size: 30px;
     padding-bottom: 20px;
+    line-height: 1.2;
 }
 
 .fa-star:not(.empty-star) {
