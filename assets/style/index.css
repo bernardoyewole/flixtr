@@ -197,7 +197,6 @@ h1 {
 
 .empty-star {
     color: #4A4A6E;
-
 }
 
 .fa-star:first-of-type {
@@ -206,16 +205,17 @@ h1 {
 
 .add-to-list {
     padding: 6px;
-    background-color: #3664C0;
+    background-color: #3c71da;
     color: #fff;
     font-weight: 500;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
+    width: 180px;
 }
 
 .add-to-list:hover {
-    background-color: #335eb4;
+    background-color: #3969ca;
 }
 
 .movie-descrip {
