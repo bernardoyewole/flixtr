@@ -79,7 +79,7 @@ main {
     background-color: #1F1F44;
 }
 
-.content {
+.content-one {
     padding: 40px 0px;
 }
 
@@ -95,6 +95,7 @@ h1 {
 }
 
 .movies-box > div {
+    cursor: pointer;
     position: relative;
     transition: all 0.25s ease-in-out;
 }
@@ -149,6 +150,7 @@ h1 {
 .featured-img {
     transition: all 0.25s ease-in-out;
     width: 25%;
+    cursor: pointer;
 }
 
 .featured-img:hover {
@@ -220,4 +222,117 @@ h1 {
 
 .movie-descrip {
     line-height: 1.6;
+}
+
+/* ------------Movie details style-------------- */
+/* --------------------------------------------- */
+
+.content-two {
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.content-two section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    width: 80%;
+}
+
+.movie-details {
+    width: 60%;
+}
+
+.movie-poster {
+    width: 40%;
+    height: 100%;
+}
+
+.movie-poster img {
+    border-radius: 10px;
+}
+
+.movie-title-detail {
+    font-size: 40px;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+
+.duration {
+    padding-right: 8px;
+}
+
+.genre {
+    padding: 0px 8px 0px 8px;
+}
+
+.released {
+    padding-left: 8px;
+}
+
+.video-quality {
+    margin: 10px 0px;
+    padding: 5px 0px 10px 0px;
+}
+
+.video-quality span {
+    border: 2px solid #bebeda;
+    padding: 4px 10px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.video-quality span + span {
+    margin-left: 10px;
+}
+
+.movie-plot {
+    line-height: 1.5;
+}
+
+.actions {
+    padding: 20px 0px;
+}
+
+.fa-play {
+    padding-right: 4px;
+}
+
+.watch, .add {
+    height: 40px;
+    width: 180px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    color: #fff;
+}
+
+.watch {
+    background-color: #3c71da;
+    margin-right: 10px;
+}
+
+.watch:hover {
+    background-color: #3969ca;
+}
+
+.add {
+    background-color: transparent;
+    border: 2px solid #bebeda;
+}
+
+.add:hover {
+    border-color: #fff;
+}
+
+.starring h2 {
+    font-weight: 500;
+    font-size: 18px;
+    padding-bottom: 6px;
+}
+
+.none {
+    display: none;
 }

@@ -8,12 +8,22 @@ const raters = selectAll('.rater');
 const featuredMovies = selectAll('.featured-img img');
 const movieTitles = selectAll('.movie-title');
 const movieDescrips = selectAll('.movie-descrip');
+const contentOne = select('.content-one');
+const contentTwo = select('.content-two');
+const moviePoster = select('.movie-poster img');
+const main = select('main');
+const home = select('.home')
+
+onEvent('load', window, () => {
+    contentTwo.classList.add('none');
+});
 
 let count = 0;
 
 function setPopularMovies(arr) {
     popularMovies.forEach(img => {
         img.setAttribute('src', arr[count].poster);
+        img.setAttribute('id', arr[count].title);
         count++;
     });
 }
@@ -21,6 +31,7 @@ function setPopularMovies(arr) {
 function setFeaturedMovies(arr) {
     featuredMovies.forEach(img => {
         img.setAttribute('src', arr[count].poster);
+        img.setAttribute('id', arr[count].title);
         count++;
     });
 
@@ -47,20 +58,20 @@ const options = {
 async function getMovies() {
     const URL = 'https://api.andrespecht.dev/movies';
 
-  try {
-    const response = await fetch(URL, options);
-    if (!response.ok) {
-      throw new Error(`${response.statusText} (${response.status})`);
-    }
+    try {
+        const response = await fetch(URL, options);
+        if (!response.ok) {
+            throw new Error(`${response.statusText} (${response.status})`);
+        }
 
-    const data = await response.json();
-    const movies = data.response;
-// console.log(movies)
-    setPopularMovies(movies);
-    setFeaturedMovies(movies);
-  } catch(error) {
-    console.log(error);
-  }
+        const data = await response.json();
+        const movies = data.response;
+        // console.log(movies)
+        setPopularMovies(movies);
+        setFeaturedMovies(movies);
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 getMovies();
@@ -70,7 +81,6 @@ let index1 = 0;
 function setFriend(arr) {
     arr.forEach(obj => {
         if (index1 === 12) return;
-
         friends[index1].setAttribute('src', obj.picture.large);
         index1++;
     });
@@ -98,7 +108,6 @@ async function getFriends() {
 
         const users = await result.json();
         const list = users.results;
-        // print(list);
         setFriend(list);
         setRater(list);
     } catch (error) {
@@ -108,32 +117,57 @@ async function getFriends() {
 
 getFriends();
 
+let title;
 
+function setMovieTitle(obj) {
+    title = obj.id;
+    getMovieDetails();
+}
 
+onEvent('click', home, () => {
+    contentOne.classList.remove('none');
+    contentTwo.classList.add('none');
+    main.style.height = '';
+});
 
+onEvent('click', window, (event) => {
+    popularMovies.forEach(movie => {
+        if (movie.contains(event.target)) {
+            setMovieTitle(movie);
+            contentOne.classList.add('none');
+            contentTwo.classList.remove('none');
+            main.style.height = 'calc(100% - 70px)'
+        }
+    });
 
-
-const moviePoster = select('.movie-poster img');
+    featuredMovies.forEach(movie => {
+        if (movie.contains(event.target)) {
+            setMovieTitle(movie);
+            contentOne.classList.add('none');
+            contentTwo.classList.remove('none');
+            main.style.height = 'calc(100% - 70px)'
+        }
+    });
+});
 
 function setPoster(obj) {
     moviePoster.setAttribute('src', `${obj.Poster.replace('300', '2080')}`);
 }
 
+
 async function getMovieDetails() {
-    const URL = 'https://www.omdbapi.com/?t=black+panther&apikey=a2d6b9cc';
+    const URL = `https://www.omdbapi.com/?t=${title}&apikey=a2d6b9cc`;
 
-  try {
-    const response = await fetch(URL, options);
-    if (!response.ok) {
-      throw new Error(`${response.statusText} (${response.status})`);
+    try {
+        const response = await fetch(URL, options);
+        if (!response.ok) {
+            throw new Error(`${response.statusText} (${response.status})`);
+        }
+
+        const data = await response.json();
+        // print(data);
+        setPoster(data);
+    } catch (error) {
+        console.log(error);
     }
-
-    const data = await response.json();
-    print(data);
-    setPoster(data);
-  } catch(error) {
-    console.log(error);
-  }
 };
-
-getMovieDetails();
