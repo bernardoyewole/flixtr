@@ -21,6 +21,8 @@ const moviePlot = select('.movie-plot');
 const starring = select('.starring p');
 const appendList = selectAll('.append-list');;
 const dialog = select('dialog');
+const gridContainer = select('.grid-container');
+const myList = select('.my-list');
 
 onEvent('click', dialog, function(e) {
     const rect = this.getBoundingClientRect();
@@ -83,7 +85,7 @@ async function getMovies() {
 
         const data = await response.json();
         const movies = data.response;
-        // console.log(movies)
+
         setPopularMovies(movies);
         setFeaturedMovies(movies);
     } catch (error) {
@@ -180,6 +182,17 @@ function setMovieDetails(obj) {
     starring.innerText = `${obj.Actors}`;
 }
 
+function addMovieToList(obj) {
+    let movieBox = create('div');
+    let img = create('img');
+    img.setAttribute('src', `${obj.Poster.replace('300', '2080')}`);
+
+    movieBox.appendChild(img);
+    gridContainer.appendChild(movieBox);
+    isAddClicked = false;
+    // print('worrrr')
+}
+
 async function getMovieDetails() {
     const URL = `https://www.omdbapi.com/?t=${title}&apikey=a2d6b9cc`;
 
@@ -193,24 +206,35 @@ async function getMovieDetails() {
         // print(data);
         setPoster(data);
         setMovieDetails(data);
+        isAddClicked ?  addMovieToList(data) : '';
     } catch (error) {
         console.log(error);
     }
 };
 
+function getTitle(obj) {
+    let arr = obj.parentElement.parentElement.childNodes;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].hasChildNodes()) {
+            if(arr[i].classList.contains('movie-title') 
+            || arr[i].classList.contains('movie-title-detail')) {
+        return arr[i].innerText;
+            }
+        }
+    }
+}
+
+let isAddClicked = false;
+
 appendList.forEach(button => {
     onEvent('click', button, () => {
-        // print(addToList.parentElement.parentElement.childNodes)
-        let arr = button.parentElement.parentElement.childNodes;
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i].hasChildNodes()) {
-                if(arr[i].classList.contains('movie-title') 
-                || arr[i].classList.contains('movie-title-detail')) {
-                    print(arr[i].innerText);
-                }
-            }
-            // print(arr[i])
-        }
-        dialog.showModal();
+        isAddClicked = true;
+        let clickedTitle = getTitle(button);
+        title = clickedTitle.split('(')[0];
+        getMovieDetails();
     });
+});
+
+onEvent('click', myList, () => {
+    dialog.showModal();
 });
