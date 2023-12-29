@@ -12,7 +12,24 @@ const contentOne = select('.content-one');
 const contentTwo = select('.content-two');
 const moviePoster = select('.movie-poster img');
 const main = select('main');
-const home = select('.home')
+const home = select('.home');
+const movieTitleDetail = select('.movie-title-detail');
+const duration = select('.duration');
+const genre = select('.genre');
+const released = select('.released');
+const moviePlot = select('.movie-plot');
+const starring = select('.starring p');
+const appendList = selectAll('.append-list');;
+const dialog = select('dialog');
+
+onEvent('click', dialog, function(e) {
+    const rect = this.getBoundingClientRect();
+
+    if (e.clientY < rect.top || e.clientY > rect.bottom || 
+        e.clientX < rect.left || e.clientX > rect.right) {
+        dialog.close();
+    }
+});
 
 onEvent('load', window, () => {
     contentTwo.classList.add('none');
@@ -154,6 +171,14 @@ function setPoster(obj) {
     moviePoster.setAttribute('src', `${obj.Poster.replace('300', '2080')}`);
 }
 
+function setMovieDetails(obj) {
+    movieTitleDetail.innerText = `${obj.Title} (${obj.Year})`;
+    duration.innerText = `${obj.Runtime}`;
+    genre.innerText = `${obj.Genre}`;
+    released.innerText = `${obj.Released}`; 
+    moviePlot.innerText = `${obj.Plot}`;
+    starring.innerText = `${obj.Actors}`;
+}
 
 async function getMovieDetails() {
     const URL = `https://www.omdbapi.com/?t=${title}&apikey=a2d6b9cc`;
@@ -167,7 +192,25 @@ async function getMovieDetails() {
         const data = await response.json();
         // print(data);
         setPoster(data);
+        setMovieDetails(data);
     } catch (error) {
         console.log(error);
     }
 };
+
+appendList.forEach(button => {
+    onEvent('click', button, () => {
+        // print(addToList.parentElement.parentElement.childNodes)
+        let arr = button.parentElement.parentElement.childNodes;
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].hasChildNodes()) {
+                if(arr[i].classList.contains('movie-title') 
+                || arr[i].classList.contains('movie-title-detail')) {
+                    print(arr[i].innerText);
+                }
+            }
+            // print(arr[i])
+        }
+        dialog.showModal();
+    });
+});
