@@ -187,10 +187,15 @@ function addMovieToList(obj) {
     let img = create('img');
     img.setAttribute('src', `${obj.Poster.replace('300', '2080')}`);
 
-    movieBox.appendChild(img);
-    gridContainer.appendChild(movieBox);
-    isAddClicked = false;
-    // print('worrrr')
+    let moviesInList = selectAll('.grid-container img');
+    let alreadyInList = moviesInList.some(movie => img.getAttribute('src') 
+    === movie.getAttribute('src'));
+
+    if (!alreadyInList) {
+        movieBox.appendChild(img);
+        gridContainer.appendChild(movieBox);
+        isAddClicked = false;
+    }
 }
 
 async function getMovieDetails() {
